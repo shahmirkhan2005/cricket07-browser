@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/build/(.*\\.wasm)",
-      "destination": "https://github.com"
+      "destination": "https://github.com/shahmirkhan2005/cricket07-browser/releases/download/v1/cricket07.06b94ea160aa.wasm"
     },
     {
       "source": "/build/(.*)",
-      "destination": "/web/build/$1"
+      "destination": "/build/$1"
     },
     {
       "source": "/(.*)",
