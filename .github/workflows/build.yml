@@ -1,12 +1,15 @@
 name: Build WebAssembly
 on:
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: mymindstorm/setup-emsdk@v14
+      - run: bash build.sh
       - run: bash build_web.sh
       - run: |
           mkdir -p web/build
