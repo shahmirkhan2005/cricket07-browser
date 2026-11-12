@@ -1,7 +1,17 @@
 {
   "rewrites": [
-    { "source": "/build/(.*)", "destination": "/build/$1" },
-    { "source": "/(.*)", "destination": "/web/$1" }
+    {
+      "source": "/build/(.*\\.wasm)",
+      "destination": "https://github.com"
+    },
+    {
+      "source": "/build/(.*)",
+      "destination": "/web/build/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/web/$1"
+    }
   ],
   "headers": [
     {
