@@ -460,7 +460,7 @@ function showNetStatus(M, session) {
 let wasmModule = null;
 function precompile() {
   if (wasmModule || !WebAssembly.compileStreaming) return;
-  wasmModule = WebAssembly.compileStreaming(fetch('build/recomp.wasm'));
+  wasmModule = WebAssembly.compileStreaming(fetch('https://cricket07-netplay.shahmirkhan1april.workers.dev/recomp.wasm'));
   wasmModule.catch(() => { wasmModule = null; });   // run() falls back to the build's own loading
 }
 
@@ -492,11 +492,11 @@ async function run(session) {
   if (session) await clearNetSaves(session);
   sizeCanvas();
   const script = document.createElement('script');
-  script.src = 'build/recomp.js';
+  script.src = './c07_engine.js';
   await new Promise((ok, fail) => { script.onload = ok; script.onerror = fail; document.head.appendChild(script); });
   precompile();
   const module = await wasmModule?.catch(() => null);
-  const M = await createRecomp({
+  const M = await createC07({
     arguments: ['/opfs/' + OPFS_DIR],
     ...(module && { instantiateWasm: (imports, receive) => {
       WebAssembly.instantiate(module, imports).then((inst) => receive(inst, module));
