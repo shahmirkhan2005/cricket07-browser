@@ -5,8 +5,8 @@
       "destination": "https://cricket07-netplay.shahmirkhan1april.workers.dev/recomp.wasm"
     },
     {
-      "source": "/build/(.*)",
-      "destination": "/web/$1"
+      "source": "/build/recomp.js",
+      "destination": "/web/c07_engine.js"
     },
     {
       "source": "/(.*)",
