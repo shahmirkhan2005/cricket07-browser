@@ -1181,11 +1181,11 @@ function setupOnline() {
     msg('Connectingâ€¦');
     let iceServers;   // from the first ticket (TURN credentials last a day)
     const roomUrl = async () => {   // a fresh ticket each time (they expire after an hour)
-      const res = await fetch('_netplay_ticket', { cache: 'no-store' });
+      const res = await fetch('https://cricket07-netplay.shahmirkhan1april.workers.dev/netplay_ticket', { cache: 'no-store' });
       if (!res.ok) throw new Error('Online play is not available on this server.');
       const { ticket, iceServers: ice } = await res.json();
       iceServers ??= ice;
-      const url = new URL(`netplay/${code}?ticket=${encodeURIComponent(ticket)}`, location.href);
+      const url = new URL(`netplay/${code}?ticket=${encodeURIComponent(ticket)}`, 'https://cricket07-netplay.shahmirkhan1april.workers.dev');
       if (create) { url.searchParams.set('create', '1'); url.searchParams.set('region', $('np-region').value); create = false; }
       url.protocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
       return url.href;
