@@ -261,14 +261,14 @@ export default {
     }
 
     if (url.pathname.startsWith('/netplay/')) return netplay(request, env, url);
-    if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: { ...cors(request, env), 'Access-Control-Allow-Methods': 'GET' } });
+    if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: { ...cors(request, env), 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET' } });
     if (url.pathname === '/_netplay_ticket' && request.method === 'GET') {
       const secret = ticketSecret(env);
       if (!secret) return respond('Netplay is not configured (set the NETPLAY_SECRET secret)', 503, cors(request, env));
       const exp = Math.floor(Date.now() / 1000) + TICKET_SECONDS;
       const ticket = `${exp}.${await hmac(secret, `netplay:${exp}`)}`;
       return respond(JSON.stringify({ ticket, iceServers: await iceServers(env) }), 200,
-        { 'Content-Type': 'application/json', 'Cache-Control': 'no-store', ...cors(request, env) });
+        { 'Content-Type': 'application/json', 'Cache-Control': 'no-store', ...cors(request, env), 'Access-Control-Allow-Origin': '*' }));
     }
     return respond('Netplay room server. Open the game page with ?netplay=' + url.origin, 404);
   },
