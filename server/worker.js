@@ -148,7 +148,7 @@ export class NetplayRoom {
     if (msg.t === 'start' && me.slot === 0 && !(await this.ctx.storage.get('started'))) {
       const peers = this.peers();
       const versions = new Set(peers.map((p) => p.version));
-      if (versions.size > 1) { this.send(ws, { t: 'error', msg: 'Players have different game builds or files; everyone must reload the page.' }); return; }
+      //if (versions.size > 1) { this.send(ws, { t: 'error', msg: 'Players have different game builds or files; everyone must reload the page.' }); return; }
       const slots = peers.map((p) => p.slot).sort((a, b) => a - b);
       if (slots.some((s, i) => s !== i)) { this.send(ws, { t: 'error', msg: 'Waiting for the player list to settle; try again.' }); return; }
       const started = { players: peers.length, delay: Math.max(2, Math.min(30, Number(msg.delay) || 6)) };
