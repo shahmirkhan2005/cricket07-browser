@@ -526,8 +526,8 @@ async function run(session) {
   });
   bootStep('gpu');
   const canvas = $('canvas');
-  M._rc_gpu_init(canvas.width, canvas.height);
-  new ResizeObserver(() => { sizeCanvas(); M._rc_set_canvas_size(canvas.width, canvas.height); }).observe(canvas);
+  M._rc_gpu_init?.(canvas.width, canvas.height);
+  new ResizeObserver(() => { sizeCanvas(); M._rc_set_canvas_size?.(canvas.width, canvas.height); }).observe(canvas);
   hookInput(M, !!session);
   if (session) { session.client.attach(M); showNetStatus(M, session); }
   startAudio(M).catch((e) => console.warn('audio unavailable:', e));
