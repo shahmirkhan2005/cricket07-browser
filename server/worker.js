@@ -249,7 +249,7 @@ async function netplay(request, env, url) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-          if (url.pathname === "/recomp.wasm") {
+          if (url.pathname.includes("recomp.wasm")) {
       const wasmRes = await fetch("https://github.com/shahmirkhan2005/cricket07-browser/releases/download/v1/cricket07.06b94ea160aa.wasm");
       return new Response(wasmRes.body, {
         headers: {
