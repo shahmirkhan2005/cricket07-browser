@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/build/(.*\\.wasm)",
-      "destination": "https://workers.dev"
+      "destination": "https://cricket07-netplay.shahmirkhan1april.workers.dev/recomp.wasm"
     },
     {
       "source": "/build/(.*)",
-      "destination": "/web/build/$1"
+      "destination": "/build/$1"
     },
     {
       "source": "/(.*)",
