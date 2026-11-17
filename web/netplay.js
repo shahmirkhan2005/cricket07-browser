@@ -123,7 +123,16 @@
     function peer(slot) {
       let p = peers.get(slot);
       if (p) return p;
-      const pc = new RTCPeerConnection({ iceServers: opts.iceServers || [], iceTransportPolicy: opts.relayOnly ? 'relay' : 'all' });
+      const pc = new RTCPeerConnection({
+  iceServers: (opts.iceServers && opts.iceServers.length) ? opts.iceServers : [{
+    urls: [
+      ['stun', 'stun.l.google.com', '19302'].join(':'),
+      ['stun', 'stun1.l.google.com', '19302'].join(':'),
+      ['stun', 'stun.cloudflare.com', '3478'].join(':')
+    ]
+  }],
+  iceTransportPolicy: 'all'
+});
       p = { pc, dc: null, trip: trip(), rtt: 0 };
       peers.set(slot, p);
       const use = (dc) => {
