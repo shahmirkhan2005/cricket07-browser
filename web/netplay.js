@@ -1,4 +1,4 @@
-// Netplay transport, shared by the page (loader.js) and the headless Node harness (node_env.js).
+// Netplay transport, shared by the page (c07.js) and the headless Node harness (node_env.js).
 //
 // Connects to a room on the Worker (worker.js: NetplayRoom), shows the lobby through callbacks, and once the
 // host starts the session moves lockstep messages between this peer's game (host/netplay.c) and the room:
@@ -218,7 +218,7 @@
       // safety net.
       attach(M, pollMs = 8) {
         game = M;
-        M.rcNetplayPump = pump;
+        M.c07NetplayPump = pump;
         for (const m of early.splice(0)) deliver(M, m);
         timer = setInterval(pump, pollMs);
       },
@@ -256,12 +256,12 @@
   // Environment for a peer's game: deterministic simulation, this peer's slot, the session's settings.
   function gameEnv(session) {
     return {
-      RC_DETERMINISTIC: '1', RC_NETPLAY: '1', RC_NP_PLAYERS: String(session.players),
-      RC_NP_SLOT: String(session.you), RC_NP_DELAY: String(session.delay), RC_PADS: String(session.players),
+      C07_DETERMINISTIC: '1', C07_NETPLAY: '1', C07_NP_PLAYERS: String(session.players),
+      C07_NP_SLOT: String(session.you), C07_NP_DELAY: String(session.delay), C07_PADS: String(session.players),
     };
   }
 
   const api = { connect, gameEnv, autoDelay };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
-  else root.RcNetplay = root.C07Netplay = api;
+  else root.C07Netplay = api;
 })(typeof self !== 'undefined' ? self : this);
