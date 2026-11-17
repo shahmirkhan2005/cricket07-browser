@@ -263,5 +263,5 @@
 
   const api = { connect, gameEnv, autoDelay };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
-  else root.RcNetplay = api;
+  else root.RcNetplay = root.C07Netplay = api;
 })(typeof self !== 'undefined' ? self : this);
