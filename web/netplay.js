@@ -265,4 +265,3 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.RcNetplay = api;
 })(typeof self !== 'undefined' ? self : this);
-window.C07Netplay = RecompNetplay;
