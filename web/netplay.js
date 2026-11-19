@@ -124,13 +124,29 @@
       let p = peers.get(slot);
       if (p) return p;
       const pc = new RTCPeerConnection({
-  iceServers: (opts.iceServers && opts.iceServers.length) ? opts.iceServers : [{
-    urls: [
-      ['stun', 'stun.l.google.com', '19302'].join(':'),
-      ['stun', 'stun1.l.google.com', '19302'].join(':'),
-      ['stun', 'stun.cloudflare.com', '3478'].join(':')
-    ]
-  }],
+  iceServers: [
+    { urls: ['stun', 'stun.relay.metered.ca', '80'].join(':') },
+    {
+      urls: ['turn', 'global.relay.metered.ca', '80'].join(':'),
+      username: '9254ecf2691c0706cbd0d5bc',
+      credential: 'hus3Ag001VuWncSz'
+    },
+    {
+      urls: ['turn', 'global.relay.metered.ca', '80?transport=tcp'].join(':'),
+      username: '9254ecf2691c0706cbd0d5bc',
+      credential: 'hus3Ag001VuWncSz'
+    },
+    {
+      urls: ['turn', 'global.relay.metered.ca', '443'].join(':'),
+      username: '9254ecf2691c0706cbd0d5bc',
+      credential: 'hus3Ag001VuWncSz'
+    },
+    {
+      urls: ['turns', 'global.relay.metered.ca', '443?transport=tcp'].join(':'),
+      username: '9254ecf2691c0706cbd0d5bc',
+      credential: 'hus3Ag001VuWncSz'
+    }
+  ],
   iceTransportPolicy: 'all'
 });
       p = { pc, dc: null, trip: trip(), rtt: 0 };
