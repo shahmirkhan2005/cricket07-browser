@@ -149,7 +149,7 @@
   ],
   iceTransportPolicy: "all"
 });
-s      p = { pc, dc: null, trip: trip(), rtt: 0 };
+      p = { pc, dc: null, trip: trip(), rtt: 0 };
       peers.set(slot, p);
       const use = (dc) => {
         p.dc = dc;
