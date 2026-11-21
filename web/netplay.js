@@ -137,7 +137,7 @@
       credential: "hus3Ag001VuWncSz"
     }
   ],
-  iceTransportPolicy: "all"
+  iceTransportPolicy: "relay"
 });
       p = { pc, dc: null, trip: trip(), rtt: 0 };
       peers.set(slot, p);
