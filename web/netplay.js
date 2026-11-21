@@ -132,22 +132,12 @@
       credential: "hus3Ag001VuWncSz"
     },
     {
-      urls: "turn:global.relay.metered.ca:80?transport=tcp",
-      username: "9254ecf2691c0706cbd0d5bc",
-      credential: "hus3Ag001VuWncSz"
-    },
-    {
       urls: "turn:global.relay.metered.ca:443",
-      username: "9254ecf2691c0706cbd0d5bc",
-      credential: "hus3Ag001VuWncSz"
-    },
-    {
-      urls: "turns:global.relay.metered.ca:443?transport=tcp",
       username: "9254ecf2691c0706cbd0d5bc",
       credential: "hus3Ag001VuWncSz"
     }
   ],
-  iceTransportPolicy: "relay"
+  iceTransportPolicy: "all"
 });
       p = { pc, dc: null, trip: trip(), rtt: 0 };
       peers.set(slot, p);
