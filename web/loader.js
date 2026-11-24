@@ -1200,7 +1200,7 @@ function setupOnline() {
     let session = null;
     const left = new Set();
     const me = client = C07Netplay.connect({
-      url, name, version, reconnectUrl: roomUrl, iceServers, relayOnly: params.get('turn') === 'only',
+      url, name, version, reconnectUrl: roomUrl, iceServers, relayOnly: true,
       onReconnect(state) { if (session) session.reconnecting = state === 'connecting'; },
       onLobby(l) {
         if (client !== me) return;   // a room this page already left
