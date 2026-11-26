@@ -123,7 +123,22 @@
     function peer(slot) {
       let p = peers.get(slot);
       if (p) return p;
-     const pc = new RTCPeerConnection({ iceServers: opts.iceServers || [], iceTransportPolicy: opts.relayOnly ? 'relay' : 'all' });
+     const pc = new RTCPeerConnection({
+  iceServers: [
+    { urls: "stun:stun.relay.metered.ca:80" },
+    {
+      urls: "turn:global.relay.metered.ca:80",
+      username: "9254ecf2691c0706cbd0d5bc",
+      credential: "hus3Ag001VuWncSz"
+    },
+    {
+      urls: "turn:global.relay.metered.ca:443",
+      username: "9254ecf2691c0706cbd0d5bc",
+      credential: "hus3Ag001VuWncSz"
+    }
+  ],
+  iceTransportPolicy: "all"
+});
       p = { pc, dc: null, trip: trip(), rtt: 0 };
       peers.set(slot, p);
       const use = (dc) => {
